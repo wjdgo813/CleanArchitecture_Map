@@ -1,0 +1,6 @@
+framework module Pods_KakaoMap_SampleTests {
+  umbrella header "Pods-KakaoMap_SampleTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
