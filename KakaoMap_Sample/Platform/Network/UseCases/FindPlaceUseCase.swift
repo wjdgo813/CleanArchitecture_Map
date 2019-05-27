@@ -18,7 +18,7 @@ final class FindPlaceUseCase: FindPlaceCase{
         self.network = Network()
     }
     
-    func findPlaceBy(categoryCode: CategoryCode = .cafe,
+    func findPlaceBy(categoryCode: CategoryCode = .gasStation,
                     position: Position,
                     radius : Int = 50,
                     page: Int = 1,

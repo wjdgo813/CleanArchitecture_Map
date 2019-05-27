@@ -20,16 +20,6 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
 
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - Differentiator
-    - RxCocoa
-    - RxDataSources
-    - RxRelay
-    - RxSwift
-    - SnapKit
-
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
@@ -41,4 +31,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e0939bfe6fcee0ef7c1520f058dd76bc196df2fe
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.4.0

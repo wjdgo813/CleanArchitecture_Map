@@ -16,6 +16,7 @@ import RxDataSources
 final class MainViewController: BaseViewController {
     private let findMapView: MainMapView = {
         let view = MainMapView()
+        view.mapView.currentLocationTrackingMode = .onWithoutHeading
         return view
     }()
     
@@ -30,10 +31,7 @@ final class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let mapView = MTMapView(frame: self.view.frame)
-//        mapView.delegate = self
-//        mapView.baseMapType = .standard
-//        self.view.addSubview(mapView)
+
     }
     
     
@@ -41,10 +39,13 @@ final class MainViewController: BaseViewController {
         self.view.addSubview(self.findMapView)
         self.layout()
     }
+    
+    override func setupBind() {
+        self.findMapView.mapView.delegate = self
+    }
 }
 
-
-extension MainViewController: MTMapViewDelegate{
+extension MainViewController{
     private func layout(){
         self.findMapView.snp.makeConstraints{
             $0.top.equalToSuperview()
@@ -52,5 +53,13 @@ extension MainViewController: MTMapViewDelegate{
             $0.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+}
+
+
+extension MainViewController: MTMapViewDelegate{
+    func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
+        let current = location.mapPointGeo()
+        print("lat: \(current.latitude), long: \(current.longitude)")
     }
 }

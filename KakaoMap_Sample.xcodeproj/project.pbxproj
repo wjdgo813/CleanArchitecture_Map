@@ -59,6 +59,7 @@
 		A12F40B9229A7C4B008B282C /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40B8229A7C4B008B282C /* Position.swift */; };
 		A12F40BC229A9722008B282C /* FindPlaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40BB229A9722008B282C /* FindPlaceUseCase.swift */; };
 		A12F40C3229AAC6A008B282C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40C2229AAC6A008B282C /* Network.swift */; };
+		A1BB8A8D229C47200034D6DB /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BB8A8C229C47200034D6DB /* UIView+.swift */; };
 		CCCA508D229BCC6600AC0CCF /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA508C229BCC6600AC0CCF /* Application.swift */; };
 		CCCA508F229BCF7100AC0CCF /* NetworkUseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA508E229BCF7100AC0CCF /* NetworkUseCaseProvider.swift */; };
 		CCCA5097229BE0C700AC0CCF /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */; };
@@ -155,6 +156,7 @@
 		A12F40B8229A7C4B008B282C /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		A12F40BB229A9722008B282C /* FindPlaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaceUseCase.swift; sourceTree = "<group>"; };
 		A12F40C2229AAC6A008B282C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		A1BB8A8C229C47200034D6DB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		BF180E228F28ECF1AAD83FC1 /* Pods-KakaoMap_SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8A20527720AA9BC83BB858B /* Pods_KakaoMap_SampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMap_SampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCA508C229BCC6600AC0CCF /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
@@ -422,6 +424,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		A1BB8A8B229C47160034D6DB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A1BB8A8C229C47200034D6DB /* UIView+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CCCA508B229BAB6E00AC0CCF /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +454,7 @@
 		CCCA5098229BEB1600AC0CCF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A1BB8A8B229C47160034D6DB /* Extension */,
 				CCCA509C229BF56B00AC0CCF /* Base */,
 			);
 			path = Common;
@@ -487,6 +498,7 @@
 				A12F401B229A47D5008B282C /* Frameworks */,
 				A12F401C229A47D5008B282C /* Resources */,
 				2A6107049985C080D58DD649 /* [CP] Embed Pods Frameworks */,
+				A7C767B3CB6E6E0E41A6A26D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -505,6 +517,8 @@
 				A12F402E229A47D6008B282C /* Sources */,
 				A12F402F229A47D6008B282C /* Frameworks */,
 				A12F4030229A47D6008B282C /* Resources */,
+				1DC23064F0E334831A44B992 /* [CP] Embed Pods Frameworks */,
+				D36FE9DF0767A2ED7FFB38CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -524,6 +538,8 @@
 				A12F4039229A47D6008B282C /* Sources */,
 				A12F403A229A47D6008B282C /* Frameworks */,
 				A12F403B229A47D6008B282C /* Resources */,
+				46F9FDA71F0CA0CD7265A651 /* [CP] Embed Pods Frameworks */,
+				9DE28EC21768F029A57DF56F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -633,6 +649,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1DC23064F0E334831A44B992 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		286349BBEA640AE40CD5AF73 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -657,7 +688,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -678,7 +709,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46F9FDA71F0CA0CD7265A651 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DE28EC21768F029A57DF56F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7C767B3CB6E6E0E41A6A26D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0197D4B4B6D5645B8D4957B /* [CP] Check Pods Manifest.lock */ = {
@@ -697,6 +773,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D36FE9DF0767A2ED7FFB38CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D47D26F222880186738620DA /* [CP] Check Pods Manifest.lock */ = {
@@ -733,6 +824,7 @@
 				A12F40AC229A6EF7008B282C /* Place.swift in Sources */,
 				A12F40AF229A70CA008B282C /* UseCaseProvide.swift in Sources */,
 				A12F4024229A47D5008B282C /* MainViewController.swift in Sources */,
+				A1BB8A8D229C47200034D6DB /* UIView+.swift in Sources */,
 				A12F4022229A47D5008B282C /* AppDelegate.swift in Sources */,
 				CCCA50A0229BF72A00AC0CCF /* MainMapView.swift in Sources */,
 				A12F40B5229A74CC008B282C /* FindPlaceService.swift in Sources */,

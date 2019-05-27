@@ -9,7 +9,7 @@
 import Foundation
 
 enum CategoryCode: String{
-    case cafe      = "CE7"
-    case hospital  = "HP8"
-    case drugStore = "PM9"
+    case gasStation = "OL7"
+    case hospital   = "HP8"
+    case drugStore  = "PM9"
 }
