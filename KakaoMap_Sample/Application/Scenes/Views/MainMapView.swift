@@ -14,6 +14,18 @@ import RxSwift
 
 final class MainMapView: BaseView{
     
+    // MARK: - Properties
+    
+    lazy var categoryMakerClickObservable: Observable<CategoryCode> = {
+        return Observable.merge(self.hospitalButton.rx.tap.map{ _ in CategoryCode.hospital },
+                                self.drugStoreButton.rx.tap.map{ _ in CategoryCode.drugStore },
+                                self.gasStationButton.rx.tap.map{ _ in CategoryCode.gasStation })
+    }()
+    
+    lazy var refreshClickEvent: ControlEvent<Void> = {
+        return self.refreshButton.rx.tap
+    }()
+    
     // MARK: - UI Components
     
     let mapView: MTMapView = {
@@ -40,7 +52,6 @@ final class MainMapView: BaseView{
         let button = UIButton(type: .system)
         button.setTitle("병원", for: .normal)
         button.backgroundColor = .white
-        button.tag = 1
         return button
     }()
     
@@ -48,7 +59,6 @@ final class MainMapView: BaseView{
         let button = UIButton(type: .system)
         button.setTitle("약국", for: .normal)
         button.backgroundColor = .white
-        button.tag = 2
         return button
     }()
     
@@ -56,7 +66,6 @@ final class MainMapView: BaseView{
         let button = UIButton(type: .system)
         button.setTitle("주유소", for: .normal)
         button.backgroundColor = .white
-        button.tag = 3
         return button
     }()
     
