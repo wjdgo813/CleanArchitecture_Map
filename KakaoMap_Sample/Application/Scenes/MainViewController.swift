@@ -8,6 +8,10 @@
 
 import UIKit
 
+import SnapKit
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 class MainViewController: BaseViewController {
     init() {
@@ -25,6 +29,11 @@ class MainViewController: BaseViewController {
         mapView.delegate = self
         mapView.baseMapType = .standard
         self.view.addSubview(mapView)
+    }
+    
+    
+    override func setupUI() {
+        
     }
 }
 
