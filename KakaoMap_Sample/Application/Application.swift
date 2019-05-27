@@ -21,6 +21,7 @@ final class Application{
         let navigator = DefaultMainNavigator(services: self.networkUseCaseProvider,
                                              navigationController: navigationController)
         window.rootViewController = navigationController
+        window.makeKeyAndVisible()
         navigator.toMain()
         
     }

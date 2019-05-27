@@ -8,13 +8,16 @@
 
 import UIKit
 
+import SnapKit
+import RxCocoa
+import RxSwift
+
 class BaseView: UIView {
     // MARK: Properties
     weak var vc: BaseViewController!
     
     // MARK: Initialize
-    required init(controlBy viewController: BaseViewController) {
-        vc = viewController
+    init() {
         super.init(frame: UIScreen.main.bounds)
         setupUI()
     }

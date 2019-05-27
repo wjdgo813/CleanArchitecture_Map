@@ -64,6 +64,7 @@
 		CCCA5097229BE0C700AC0CCF /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */; };
 		CCCA509A229BEB2B00AC0CCF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA5099229BEB2B00AC0CCF /* BaseViewController.swift */; };
 		CCCA509E229BF58500AC0CCF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA509D229BF58500AC0CCF /* BaseView.swift */; };
+		CCCA50A0229BF72A00AC0CCF /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA509F229BF72A00AC0CCF /* MainMapView.swift */; };
 		ED825AF100B568645C870D5C /* Pods_KakaoMap_SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A20527720AA9BC83BB858B /* Pods_KakaoMap_SampleUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,7 @@
 		CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		CCCA5099229BEB2B00AC0CCF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CCCA509D229BF58500AC0CCF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		CCCA509F229BF72A00AC0CCF /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		D149AFEFD4C305C7C589C7CD /* Pods-KakaoMap_SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBCCA0F9DF3EBB4CBD416351 /* Pods-KakaoMap_SampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FE01596D26FDFC0B2AD79F /* Pods-KakaoMap_SampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -433,9 +435,8 @@
 		CCCA5093229BE08D00AC0CCF /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				CCCA50A1229BF86700AC0CCF /* VIewControllers */,
 				CCCA509B229BF56000AC0CCF /* Views */,
-				CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */,
-				A12F4023229A47D5008B282C /* MainViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -451,6 +452,7 @@
 		CCCA509B229BF56000AC0CCF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CCCA509F229BF72A00AC0CCF /* MainMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -462,6 +464,15 @@
 				CCCA509D229BF58500AC0CCF /* BaseView.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		CCCA50A1229BF86700AC0CCF /* VIewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */,
+				A12F4023229A47D5008B282C /* MainViewController.swift */,
+			);
+			path = VIewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -723,6 +734,7 @@
 				A12F40AF229A70CA008B282C /* UseCaseProvide.swift in Sources */,
 				A12F4024229A47D5008B282C /* MainViewController.swift in Sources */,
 				A12F4022229A47D5008B282C /* AppDelegate.swift in Sources */,
+				CCCA50A0229BF72A00AC0CCF /* MainMapView.swift in Sources */,
 				A12F40B5229A74CC008B282C /* FindPlaceService.swift in Sources */,
 				CCCA5097229BE0C700AC0CCF /* MainNavigator.swift in Sources */,
 				CCCA509E229BF58500AC0CCF /* BaseView.swift in Sources */,
