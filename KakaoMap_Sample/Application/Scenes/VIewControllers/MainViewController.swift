@@ -14,13 +14,19 @@ import RxCocoa
 import RxDataSources
 
 final class MainViewController: BaseViewController {
+    // MARK: - Properties
+    
+    private var viewModel: MainViewModel
+    private let positionDriver = PublishSubject<Position>()
+    
     private let findMapView: MainMapView = {
         let view = MainMapView()
         view.mapView.currentLocationTrackingMode = .onWithoutHeading
         return view
     }()
     
-    init() {
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,6 +48,11 @@ final class MainViewController: BaseViewController {
     
     override func setupBind() {
         self.findMapView.mapView.delegate = self
+        let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMakerClickObservable.asDriverOnErrorJustComplete(),
+                                        refresh: findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
+                                        position: positionDriver.asDriverOnErrorJustComplete())
+        
+        let output = viewModel.transform(input: input)
     }
 }
 
@@ -61,5 +72,7 @@ extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         let current = location.mapPointGeo()
         print("lat: \(current.latitude), long: \(current.longitude)")
+        positionDriver.onNext(Position(x: "\(current.latitude)",
+                                       y: "\(current.longitude)"))
     }
 }

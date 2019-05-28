@@ -106,7 +106,7 @@ extension MainMapView{
         
         self.categoryStackView.snp.makeConstraints{
             $0.right.equalToSuperview().offset(-10)
-            $0.bottom.equalToSuperview().offset(-10)
+            $0.bottom.equalTo(self.safeArea.bottom).offset(-10)
         }
     }
 }

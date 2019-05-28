@@ -23,7 +23,8 @@ final class DefaultMainNavigator: MainNavigator{
     }
     
     func toMain(){
-        let vc = MainViewController()
+        let vc = MainViewController(viewModel: MainViewModel(useCase: self.services.makeFindPlaceUseCase(),
+                                                             navigator: self))
         self.navigationController.setViewControllers([vc], animated: true)
     }
 }
