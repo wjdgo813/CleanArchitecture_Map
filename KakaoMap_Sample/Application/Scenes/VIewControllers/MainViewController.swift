@@ -102,19 +102,27 @@ extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         let current = location.mapPointGeo()
         print("lat: \(current.latitude), long: \(current.longitude)")
-        positionDriver.onNext(Position(x: "\(current.latitude)",
-                                       y: "\(current.longitude)"))
+        positionDriver.onNext(Position(x: "\(current.longitude)",
+                                       y: "\(current.latitude)"))
     }
+    
+    func mapView(_ mapView: MTMapView!, dragStartedOn mapPoint: MTMapPoint!) {
+        
+    }
+    
     
     private func drawMarker(positions:[Position]){
         var poiitemArr = [MTMapPOIItem]()
         for position in positions{
             let item = MTMapPOIItem()
+            item.itemName = "ddd"
             item.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(position.x) ?? 0.0,
                                                                longitude: Double(position.y) ?? 0.0))
             item.markerType = .redPin
+            item.showAnimationType = .noAnimation
             poiitemArr.append(item)
         }
+        
         self.findMapView.mapView.addPOIItems(poiitemArr)
         self.findMapView.mapView.fitAreaToShowAllPOIItems()
     }

@@ -24,8 +24,9 @@ final class MainMapView: BaseView{
                                 })
     }()
     
-    lazy var refreshClickEvent: ControlEvent<Void> = {
-        return self.refreshButton.rx.tap
+    lazy var refreshClickEvent: Observable<Position> = {
+        return self.refreshButton.rx.tap.map{ _ in Position(x: "\(self.mapView.mapCenterPoint.mapPointGeo().longitude)",
+                                                       y: "\(self.mapView.mapCenterPoint.mapPointGeo().latitude)") }
     }()
     
     // MARK: - UI Components

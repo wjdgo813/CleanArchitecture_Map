@@ -11,11 +11,24 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class MainViewModel: ViewModelType{
+final class MainViewModel{
     
+    private let useCase: FindPlaceCase
+    private let navigator: MainNavigator
+    private let disposeBag = DisposeBag()
+    
+    init(useCase: FindPlaceCase, navigator: MainNavigator) {
+        self.useCase   = useCase
+        self.navigator = navigator
+    }
+}
+
+// MARK: ViewModelType
+
+extension MainViewModel: ViewModelType{
     struct Input {
         let findPlaceTrigger: Driver<CategoryCode>
-        let refresh: Driver<Void>
+        let refresh: Driver<Position>
         let position: Driver<Position>
     }
     
@@ -24,26 +37,39 @@ final class MainViewModel: ViewModelType{
         let placesViewModel: Driver<[PlaceItemViewModel]>
     }
     
-    private let useCase: FindPlaceCase
-    private let navigator: MainNavigator
-    private let disposeBag = DisposeBag()//테스트 용
-    
-    init(useCase: FindPlaceCase, navigator: MainNavigator) {
-        self.useCase   = useCase
-        self.navigator = navigator
-    }
-    
     
     func transform(input: Input) -> Output {
-        let places = input.findPlaceTrigger
+        let categoryCode = BehaviorSubject<CategoryCode>(value: .hospital)
+        let places       = PublishSubject<FindPlaces>()
+        
+        input.findPlaceTrigger
+            .drive(categoryCode)
+            .disposed(by: self.disposeBag)
+        
+        input.findPlaceTrigger
+            .distinctUntilChanged()
             .withLatestFrom(input.position){ ($0,$1) }
+            .debug("findPlaceTrigger")
             .flatMapLatest{ [weak self] (code, position) in
                 self?.useCase.findPlaceBy(categoryCode: code,
-                                         position: position,
-                                         radius: 100,
-                                         page: 1,
-                                         size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
-            }
+                                          position: position,
+                                          radius: 2000,
+                                          page: 1,
+                                          size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
+        }.drive(places)
+        .disposed(by: self.disposeBag)
+        
+        input.refresh
+            .withLatestFrom(categoryCode.asDriverOnErrorJustComplete()){ ($0,$1) }
+            .debug("refresh")
+            .flatMapLatest{ [weak self] (position, code) in
+                self?.useCase.findPlaceBy(categoryCode: code,
+                                          position: position,
+                                          radius: 2000,
+                                          page: 1,
+                                          size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
+        }.drive(places)
+        .disposed(by: self.disposeBag)
         
         let markers = places.filter{ $0.places != nil }
             .map{
@@ -57,6 +83,7 @@ final class MainViewModel: ViewModelType{
             .map{ $0.places!.map{  PlaceItemViewModel(with: $0)  } }
         
         
-        return Output(markers: markers.asDriver(), placesViewModel: viewModel)
+        return Output(markers: markers.asDriverOnErrorJustComplete(),
+                      placesViewModel: viewModel.asDriverOnErrorJustComplete())
     }
 }
