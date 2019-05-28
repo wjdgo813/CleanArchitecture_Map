@@ -20,7 +20,8 @@ final class MainViewModel: ViewModelType{
     }
     
     struct Output {
-        let markers: Driver<[Place]>
+        let markers: Driver<[Position]>
+        let placesViewModel: Driver<[PlaceItemViewModel]>
     }
     
     private let useCase: FindPlaceCase
@@ -42,16 +43,20 @@ final class MainViewModel: ViewModelType{
                                          radius: 100,
                                          page: 1,
                                          size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
-            }.map{
-                return try? JSONDecoder().decode(FindPlaces.self, from: $0)
+            }
+        
+        let markers = places.filter{ $0.places != nil }
+            .map{
+                $0.places!.map{
+                    Position(x: $0.x, y: $0.y)
+                }
         }
         
-        let markers = places.filter{ $0?.places != nil }.map{ $0!.places! }
-
-        places.drive(onNext: { s in
-            print("data : \(s)")
-        }).disposed(by: self.disposeBag)
+        let viewModel = places
+            .filter{ $0.places != nil }
+            .map{ $0.places!.map{  PlaceItemViewModel(with: $0)  } }
         
-        return Output(markers: markers.asDriver())
+        
+        return Output(markers: markers.asDriver(), placesViewModel: viewModel)
     }
 }

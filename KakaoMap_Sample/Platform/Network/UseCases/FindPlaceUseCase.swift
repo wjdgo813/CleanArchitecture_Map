@@ -22,11 +22,13 @@ final class FindPlaceUseCase: FindPlaceCase{
                     position: Position,
                     radius : Int = 50,
                     page: Int = 1,
-                    size: Int = 15) -> Observable<Data> {
+                    size: Int = 15) -> Observable<FindPlaces> {
         return network.rxJSONObservable(FindPlaceService.findPlaceBy(categoryCode: categoryCode,
                                                                      position: position,
                                                                      radius: radius,
                                                                      page: page,
-                                                                     size: size))
+                                                                     size: size)).map{
+                                                                        return try JSONDecoder().decode(FindPlaces.self, from: $0)
+        }
     }
 }

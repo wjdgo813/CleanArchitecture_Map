@@ -19,7 +19,9 @@ final class MainMapView: BaseView{
     lazy var categoryMarkerClickObservable: Observable<CategoryCode> = {
         return Observable.merge(self.hospitalButton.rx.tap.map{ _ in CategoryCode.hospital },
                                 self.drugStoreButton.rx.tap.map{ _ in CategoryCode.drugStore },
-                                self.gasStationButton.rx.tap.map{ _ in CategoryCode.gasStation })
+                                self.gasStationButton.rx.tap.map{ _ in CategoryCode.gasStation }).do(onNext: { _ in
+                                    self.mapView.removeAllPOIItems()
+                                })
     }()
     
     lazy var refreshClickEvent: ControlEvent<Void> = {
@@ -105,7 +107,7 @@ extension MainMapView{
         }
         
         self.categoryStackView.snp.makeConstraints{
-            $0.right.equalToSuperview().offset(-10)
+            $0.right.equalTo(self.safeArea.right).offset(-10)
             $0.bottom.equalTo(self.safeArea.bottom).offset(-10)
         }
     }

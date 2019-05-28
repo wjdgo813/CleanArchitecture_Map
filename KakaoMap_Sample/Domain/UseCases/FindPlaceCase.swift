@@ -15,5 +15,5 @@ protocol FindPlaceCase {
                      position: Position,
                      radius:Int,
                      page: Int ,
-                     size: Int) -> Observable<Data>
+                     size: Int) -> Observable<FindPlaces>
 }

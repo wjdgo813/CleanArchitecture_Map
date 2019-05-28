@@ -70,6 +70,8 @@
 		CCCE3E6D229CC89D000EE4DC /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E6C229CC89D000EE4DC /* ViewModelType.swift */; };
 		CCCE3E6F229CD2E5000EE4DC /* Rx+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E6E229CD2E5000EE4DC /* Rx+.swift */; };
 		CCCE3E71229CDE3F000EE4DC /* FindPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E70229CDE3F000EE4DC /* FindPlaces.swift */; };
+		CCCE3E74229D15AD000EE4DC /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E73229D15AD000EE4DC /* PlaceTableViewCell.swift */; };
+		CCCE3E76229D1CE9000EE4DC /* PlaceItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */; };
 		ED825AF100B568645C870D5C /* Pods_KakaoMap_SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A20527720AA9BC83BB858B /* Pods_KakaoMap_SampleUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +175,8 @@
 		CCCE3E6C229CC89D000EE4DC /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		CCCE3E6E229CD2E5000EE4DC /* Rx+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+.swift"; sourceTree = "<group>"; };
 		CCCE3E70229CDE3F000EE4DC /* FindPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaces.swift; sourceTree = "<group>"; };
+		CCCE3E73229D15AD000EE4DC /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceItemViewModel.swift; sourceTree = "<group>"; };
 		D149AFEFD4C305C7C589C7CD /* Pods-KakaoMap_SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBCCA0F9DF3EBB4CBD416351 /* Pods-KakaoMap_SampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FE01596D26FDFC0B2AD79F /* Pods-KakaoMap_SampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -458,6 +462,7 @@
 				CCCE3E69229CC7D9000EE4DC /* ViewModel */,
 				CCCA50A1229BF86700AC0CCF /* VIewControllers */,
 				CCCA509B229BF56000AC0CCF /* Views */,
+				CCCE3E72229D1555000EE4DC /* Cell */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCA509F229BF72A00AC0CCF /* MainMapView.swift */,
+				CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -506,6 +512,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		CCCE3E72229D1555000EE4DC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				CCCE3E73229D15AD000EE4DC /* PlaceTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -518,7 +532,6 @@
 				A12F401B229A47D5008B282C /* Frameworks */,
 				A12F401C229A47D5008B282C /* Resources */,
 				2A6107049985C080D58DD649 /* [CP] Embed Pods Frameworks */,
-				A7C767B3CB6E6E0E41A6A26D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -537,8 +550,6 @@
 				A12F402E229A47D6008B282C /* Sources */,
 				A12F402F229A47D6008B282C /* Frameworks */,
 				A12F4030229A47D6008B282C /* Resources */,
-				1DC23064F0E334831A44B992 /* [CP] Embed Pods Frameworks */,
-				D36FE9DF0767A2ED7FFB38CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -558,8 +569,6 @@
 				A12F4039229A47D6008B282C /* Sources */,
 				A12F403A229A47D6008B282C /* Frameworks */,
 				A12F403B229A47D6008B282C /* Resources */,
-				46F9FDA71F0CA0CD7265A651 /* [CP] Embed Pods Frameworks */,
-				9DE28EC21768F029A57DF56F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -669,21 +678,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1DC23064F0E334831A44B992 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		286349BBEA640AE40CD5AF73 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -708,11 +702,9 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -720,61 +712,14 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46F9FDA71F0CA0CD7265A651 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9DE28EC21768F029A57DF56F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7C767B3CB6E6E0E41A6A26D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KakaoMap_Sample/Pods-KakaoMap_Sample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0197D4B4B6D5645B8D4957B /* [CP] Check Pods Manifest.lock */ = {
@@ -793,21 +738,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D36FE9DF0767A2ED7FFB38CD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D47D26F222880186738620DA /* [CP] Check Pods Manifest.lock */ = {
@@ -840,6 +770,7 @@
 				A12F40B7229A7BF5008B282C /* CategoryCode.swift in Sources */,
 				CCCA508D229BCC6600AC0CCF /* Application.swift in Sources */,
 				A12F40BC229A9722008B282C /* FindPlaceUseCase.swift in Sources */,
+				CCCE3E74229D15AD000EE4DC /* PlaceTableViewCell.swift in Sources */,
 				CCCA508F229BCF7100AC0CCF /* NetworkUseCaseProvider.swift in Sources */,
 				CCCA509A229BEB2B00AC0CCF /* BaseViewController.swift in Sources */,
 				A12F40AC229A6EF7008B282C /* Place.swift in Sources */,
@@ -853,6 +784,7 @@
 				CCCA5097229BE0C700AC0CCF /* MainNavigator.swift in Sources */,
 				CCCA509E229BF58500AC0CCF /* BaseView.swift in Sources */,
 				A12F40B9229A7C4B008B282C /* Position.swift in Sources */,
+				CCCE3E76229D1CE9000EE4DC /* PlaceItemViewModel.swift in Sources */,
 				CCCE3E6D229CC89D000EE4DC /* ViewModelType.swift in Sources */,
 				A12F40B1229A717B008B282C /* FindPlaceCase.swift in Sources */,
 				CCCE3E6B229CC887000EE4DC /* MainViewModel.swift in Sources */,
@@ -1026,12 +958,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = 28K9LD277B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = KakaoMap_Sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1053,12 +986,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 594TR8CRP9;
+				DEVELOPMENT_TEAM = 28K9LD277B;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/DaumMap.embeddedframework",
 				);
 				INFOPLIST_FILE = KakaoMap_Sample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -11,19 +11,32 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 final class MainViewController: BaseViewController {
-    // MARK: - Properties
+    // MARK: Properties
     
     private var viewModel: MainViewModel
+    private let disposeBag = DisposeBag()
     private let positionDriver = PublishSubject<Position>()
+    
+    // MARK: - UI Components
     
     private let findMapView: MainMapView = {
         let view = MainMapView()
         view.mapView.currentLocationTrackingMode = .onWithoutHeading
         return view
     }()
+    
+    private let tableVIew: UITableView = {
+        let tb = UITableView(frame: CGRect.zero)
+        tb.estimatedRowHeight = 100
+        tb.rowHeight = UITableView.automaticDimension
+        tb.insetsContentViewsToSafeArea = true
+        tb.register(PlaceTableViewCell.self, forCellReuseIdentifier: "PlaceTableViewCell")
+        return tb
+    }()
+    
+    // MARK: Constructor
     
     init(viewModel: MainViewModel) {
         self.viewModel = viewModel
@@ -34,15 +47,15 @@ final class MainViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Overridden: BaseViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-    
     
     override func setupUI() {
         self.view.addSubview(self.findMapView)
+        self.view.addSubview(self.tableVIew)
         self.layout()
     }
     
@@ -53,8 +66,18 @@ final class MainViewController: BaseViewController {
                                         position: positionDriver.asDriverOnErrorJustComplete())
         
         let output = viewModel.transform(input: input)
+        output.markers.drive(onNext: {
+            self.drawMarker(positions: $0)
+        }).disposed(by: self.disposeBag)
+        
+        output.placesViewModel
+            .drive(self.tableVIew.rx.items(cellIdentifier: "PlaceTableViewCell", cellType: PlaceTableViewCell.self)){ tableView, viewModel, cell in
+            cell.bind(viewModel)
+        }.disposed(by: self.disposeBag)
     }
 }
+
+// MARK: Layout
 
 extension MainViewController{
     private func layout(){
@@ -62,7 +85,14 @@ extension MainViewController{
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.height.equalTo(self.view.snp.height).multipliedBy(0.5)
+        }
+        
+        self.tableVIew.snp.makeConstraints{
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeArea.bottom)
+            $0.top.equalTo(self.findMapView.snp.bottom)
         }
     }
 }
@@ -74,5 +104,18 @@ extension MainViewController: MTMapViewDelegate{
         print("lat: \(current.latitude), long: \(current.longitude)")
         positionDriver.onNext(Position(x: "\(current.latitude)",
                                        y: "\(current.longitude)"))
+    }
+    
+    private func drawMarker(positions:[Position]){
+        var poiitemArr = [MTMapPOIItem]()
+        for position in positions{
+            let item = MTMapPOIItem()
+            item.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(position.x) ?? 0.0,
+                                                               longitude: Double(position.y) ?? 0.0))
+            item.markerType = .redPin
+            poiitemArr.append(item)
+        }
+        self.findMapView.mapView.addPOIItems(poiitemArr)
+        self.findMapView.mapView.fitAreaToShowAllPOIItems()
     }
 }

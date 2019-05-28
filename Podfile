@@ -9,7 +9,6 @@ target 'KakaoMap_Sample' do
   pod 'SnapKit'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxDataSources'
 
   # Pods for KakaoMap_Sample
 
