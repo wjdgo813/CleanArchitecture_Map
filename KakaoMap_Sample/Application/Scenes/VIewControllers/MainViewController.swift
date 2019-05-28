@@ -35,6 +35,9 @@ final class MainViewController: BaseViewController {
         tb.rowHeight = UITableView.automaticDimension
         tb.insetsContentViewsToSafeArea = true
         tb.register(PlaceTableViewCell.self, forCellReuseIdentifier: "PlaceTableViewCell")
+        var frame = CGRect.zero
+        frame.size.height = .leastNormalMagnitude
+        tb.tableHeaderView = UIView(frame: frame)
         return tb
     }()
     
