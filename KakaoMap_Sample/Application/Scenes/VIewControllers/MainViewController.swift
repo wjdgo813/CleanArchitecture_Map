@@ -30,7 +30,7 @@ final class MainViewController: BaseViewController, CanShowAlert {
         return view
     }()
     
-    private let tableVIew: UITableView = {
+    private let tableView: UITableView = {
         let tb = UITableView(frame: CGRect.zero,style: .grouped)
         tb.estimatedRowHeight = 100
         tb.rowHeight = UITableView.automaticDimension
@@ -70,20 +70,29 @@ final class MainViewController: BaseViewController, CanShowAlert {
     }
     
     override func setupUI() {
+        self.title = "KAKAO MAP"
         self.view.addSubview(self.findMapView)
-        self.view.addSubview(self.tableVIew)
+        self.view.addSubview(self.tableView)
         self.layout()
     }
     
     override func setupBind() {
-        self.tableVIew.delegate = self
+        self.bindView()
+        self.bindViewModel()
+    }
+    
+    private func bindView(){
+        self.tableView.delegate = self
         self.findMapView.mapView.delegate = self
-        
+    }
+
+    private func bindViewModel(){
         let input = MainViewModel.Input(categoryClickTrigger: self.findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
                                         refreshTrigger: self.findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
                                         currentLocation: self.currentLocation.asDriverOnErrorJustComplete(),
                                         refreshShowTrigger: self.gestureLocation.asDriverOnErrorJustComplete(),
-                                        loadMoreTrigger: self.moreLoadButton.rx.tap.asDriver())
+                                        loadMoreTrigger: self.moreLoadButton.rx.tap.asDriver(),
+                                        selection: self.tableView.rx.itemSelected.asDriver())
         
         let output = viewModel.transform(input: input)
         output.markers.drive(onNext: { [weak self] positions in
@@ -92,9 +101,9 @@ final class MainViewController: BaseViewController, CanShowAlert {
         }).disposed(by: self.disposeBag)
         
         output.placesViewModel
-            .drive(self.tableVIew.rx.items(cellIdentifier: "PlaceTableViewCell", cellType: PlaceTableViewCell.self)){ tableView, viewModel, cell in
-            cell.bind(viewModel)
-        }.disposed(by: self.disposeBag)
+            .drive(self.tableView.rx.items(cellIdentifier: "PlaceTableViewCell", cellType: PlaceTableViewCell.self)){ tableView, viewModel, cell in
+                cell.bind(viewModel)
+            }.disposed(by: self.disposeBag)
         
         output.refreshShow.drive(onNext:{ [weak self] in
             self?.findMapView.refreshButton.isHidden = false
@@ -102,14 +111,22 @@ final class MainViewController: BaseViewController, CanShowAlert {
         
         output.moreButtonHidden.debug("moreButtonHidden")
             .drive(onNext: {
-            self.moreLoadButton.isHidden = $0
-        }).disposed(by: self.disposeBag)
+                self.moreLoadButton.isHidden = $0
+            }).disposed(by: self.disposeBag)
         
         output.isEmptyPlaces.drive(onNext:{ [weak self] in
             self?.showAlert(title:"알림",message:"주변에 찾으시는 장소가 없습니다.")
             self?.hideList()
         }).disposed(by:self.disposeBag)
+        
+        output.selectedPlace.drive(onNext: { [weak self] place in
+            guard let place = place else { return }
+            let mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(place.y) ?? 0.0,
+                                                              longitude: Double(place.x) ?? 0.0))
+            self?.findMapView.mapView.setMapCenter(mapPoint, animated: true)
+        }).disposed(by: self.disposeBag)
     }
+    
 }
 
 // MARK: Layout
@@ -123,7 +140,7 @@ extension MainViewController{
             $0.height.equalTo(self.view.snp.height)
         }
         
-        self.tableVIew.snp.makeConstraints{
+        self.tableView.snp.makeConstraints{
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.bottom.equalTo(self.view.safeArea.bottom)
@@ -136,7 +153,7 @@ extension MainViewController{
 
 extension MainViewController{
     private func showList(){
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.4) {
             self.findMapView.snp.remakeConstraints{
                 $0.top.equalToSuperview()
                 $0.left.equalToSuperview()
@@ -149,7 +166,7 @@ extension MainViewController{
     }
     
     private func hideList(){
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.4) {
             self.findMapView.snp.remakeConstraints{
                 $0.top.equalToSuperview()
                 $0.left.equalToSuperview()

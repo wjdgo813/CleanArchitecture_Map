@@ -33,6 +33,7 @@ extension MainViewModel: ViewModelType{
         let currentLocation: Driver<Position>
         let refreshShowTrigger: Driver<Position>
         let loadMoreTrigger: Driver<Void>
+        let selection : Driver<IndexPath>
     }
     
     struct Output {
@@ -41,6 +42,7 @@ extension MainViewModel: ViewModelType{
         let refreshShow     : Driver<Void>
         let moreButtonHidden: Driver<Bool>
         let isEmptyPlaces   : Driver<Void>
+        let selectedPlace   : Driver<Place?>
     }
     
     
@@ -114,6 +116,10 @@ extension MainViewModel: ViewModelType{
             .filter{ $0.places != nil }
             .map{ $0.places!.map{  PlaceItemViewModel(with: $0)  } }
         
+        let selectedPlace = input.selection.withLatestFrom(places.asDriver()){ (indexPath, pl) -> Place? in
+            return pl.places?[indexPath.row]
+        }
+        
         let moreButtonIsHidden = places.skip(1).map{
             return $0.isEnd ? true : false
         }
@@ -127,7 +133,8 @@ extension MainViewModel: ViewModelType{
                       placesViewModel: viewModel.asDriverOnErrorJustComplete(),
                       refreshShow: refreshShow,
                       moreButtonHidden: moreButtonIsHidden.asDriverOnErrorJustComplete(),
-                      isEmptyPlaces: isEmptyPlaces.asDriverOnErrorJustComplete())
+                      isEmptyPlaces: isEmptyPlaces.asDriverOnErrorJustComplete(),
+                      selectedPlace: selectedPlace)
     }
     
     private func findPlace(code: CategoryCode,
