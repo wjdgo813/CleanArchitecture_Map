@@ -17,7 +17,7 @@ final class MainViewController: BaseViewController {
     
     private var viewModel: MainViewModel
     private let disposeBag = DisposeBag()
-    private let positionDriver = PublishSubject<Position>()
+    private let myLocation = PublishSubject<Position>()
     
     // MARK: - UI Components
     
@@ -63,7 +63,7 @@ final class MainViewController: BaseViewController {
         self.findMapView.mapView.delegate = self
         let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
                                         refresh: findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
-                                        position: positionDriver.asDriverOnErrorJustComplete())
+                                        position: myLocation.asDriverOnErrorJustComplete())
         
         let output = viewModel.transform(input: input)
         output.markers.drive(onNext: {
@@ -102,7 +102,7 @@ extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         let current = location.mapPointGeo()
         print("lat: \(current.latitude), long: \(current.longitude)")
-        positionDriver.onNext(Position(x: "\(current.longitude)",
+        myLocation.onNext(Position(x: "\(current.longitude)",
                                        y: "\(current.latitude)"))
     }
     
@@ -116,14 +116,33 @@ extension MainViewController: MTMapViewDelegate{
         for position in positions{
             let item = MTMapPOIItem()
             item.itemName = "ddd"
-            item.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(position.x) ?? 0.0,
-                                                               longitude: Double(position.y) ?? 0.0))
             item.markerType = .redPin
+            item.showDisclosureButtonOnCalloutBalloon = true
+            item.markerSelectedType = .redPin
             item.showAnimationType = .noAnimation
+            item.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(position.y) ?? 0.0,
+                                                               longitude: Double(position.x) ?? 0.0))
+            
             poiitemArr.append(item)
         }
         
         self.findMapView.mapView.addPOIItems(poiitemArr)
         self.findMapView.mapView.fitAreaToShowAllPOIItems()
     }
+    
+    /*
+     _poiItem1 = [MTMapPOIItem poiItem];
+     _poiItem1.itemName = @"Default Marker";
+     _poiItem1.markerType = MTMapPOIItemMarkerTypeRedPin;
+     _poiItem1.showDisclosureButtonOnCalloutBalloon = YES;
+     
+     _poiItem1.markerSelectedType = MTMapPOIItemMarkerSelectedTypeRedPin;
+     
+     _poiItem1.showAnimationType = MTMapPOIItemShowAnimationTypeDropFromHeaven;
+     
+     _poiItem1.mapPoint = [MTMapPoint mapPointWithGeoCoord:MTMapPointGeoMake(37.402110, 127.108451)];
+     
+     [_mapView addPOIItem:_poiItem1];
+     [_mapView fitMapViewAreaToShowMapPoints:@[self.poiItem1.mapPoint]];
+     */
 }

@@ -47,13 +47,12 @@ extension MainViewModel: ViewModelType{
             .disposed(by: self.disposeBag)
         
         input.findPlaceTrigger
-            .distinctUntilChanged()
             .withLatestFrom(input.position){ ($0,$1) }
             .debug("findPlaceTrigger")
             .flatMapLatest{ [weak self] (code, position) in
                 self?.useCase.findPlaceBy(categoryCode: code,
                                           position: position,
-                                          radius: 2000,
+                                          radius: 300,
                                           page: 1,
                                           size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
         }.drive(places)
@@ -65,7 +64,7 @@ extension MainViewModel: ViewModelType{
             .flatMapLatest{ [weak self] (position, code) in
                 self?.useCase.findPlaceBy(categoryCode: code,
                                           position: position,
-                                          radius: 2000,
+                                          radius: 300,
                                           page: 1,
                                           size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
         }.drive(places)
