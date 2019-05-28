@@ -28,3 +28,11 @@ extension SharedSequenceConvertibleType {
         return map { _ in }
     }
 }
+
+public extension BehaviorRelay where Element: RangeReplaceableCollection {
+    func append(contentsOf subelements: Element) {
+        var newValue = value
+        newValue.append(contentsOf: subelements)
+        accept(newValue)
+    }
+}

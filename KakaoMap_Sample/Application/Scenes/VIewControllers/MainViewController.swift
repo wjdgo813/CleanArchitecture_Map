@@ -16,9 +16,11 @@ final class MainViewController: BaseViewController {
     // MARK: Properties
     
     private var viewModel: MainViewModel
-    private let disposeBag = DisposeBag()
     private let currentLocation = PublishSubject<Position>()
     private let gestureLocation = PublishSubject<Position>()
+    private var disposeBag: DisposeBag{
+        return viewModel.disposeBag
+    }
     
     // MARK: - UI Components
     
@@ -28,12 +30,22 @@ final class MainViewController: BaseViewController {
     }()
     
     private let tableVIew: UITableView = {
-        let tb = UITableView(frame: CGRect.zero)
+        let tb = UITableView(frame: CGRect.zero,style: .grouped)
         tb.estimatedRowHeight = 100
         tb.rowHeight = UITableView.automaticDimension
         tb.insetsContentViewsToSafeArea = true
         tb.register(PlaceTableViewCell.self, forCellReuseIdentifier: "PlaceTableViewCell")
         return tb
+    }()
+    
+    private let moreLoadButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("더보기", for: .normal)
+        button.backgroundColor = .white
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 1
+        button.isHidden = true
+        return button
     }()
     
     // MARK: Constructor
@@ -60,11 +72,14 @@ final class MainViewController: BaseViewController {
     }
     
     override func setupBind() {
+        self.tableVIew.delegate = self
         self.findMapView.mapView.delegate = self
-        let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
-                                        refresh: findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
-                                        currentLocation: currentLocation.asDriverOnErrorJustComplete(),
-                                        refreshShowTrigger: gestureLocation.asDriverOnErrorJustComplete())
+        
+        let input = MainViewModel.Input(categoryClickTrigger: self.findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
+                                        refreshTrigger: self.findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
+                                        currentLocation: self.currentLocation.asDriverOnErrorJustComplete(),
+                                        refreshShowTrigger: self.gestureLocation.asDriverOnErrorJustComplete(),
+                                        loadMoreTrigger: self.moreLoadButton.rx.tap.asDriver())
         
         let output = viewModel.transform(input: input)
         output.markers.drive(onNext: {
@@ -78,6 +93,11 @@ final class MainViewController: BaseViewController {
         
         output.refreshShow.drive(onNext:{ [weak self] in
             self?.findMapView.refreshButton.isHidden = false
+        }).disposed(by: self.disposeBag)
+        
+        output.moreButtonHidden.debug("moreButtonHidden")
+            .drive(onNext: {
+            self.moreLoadButton.isHidden = $0
         }).disposed(by: self.disposeBag)
     }
 }
@@ -139,5 +159,27 @@ extension MainViewController: MTMapViewDelegate{
         
         self.findMapView.mapView.addPOIItems(poiitemArr)
         self.findMapView.mapView.fitAreaToShowAllPOIItems()
+    }
+}
+
+
+extension MainViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let containerView = UIView()
+        containerView.addSubview(self.moreLoadButton)
+        self.moreLoadButton.snp.makeConstraints{
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        return containerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if self.moreLoadButton.isHidden{
+            return 0
+        }
+        return 50
     }
 }

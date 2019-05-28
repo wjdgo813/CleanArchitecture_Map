@@ -28,4 +28,18 @@ struct FindPlaces: Codable {
         let meta = try values.nestedContainer(keyedBy: Meta.self, forKey: .isEnd)
         self.isEnd = try meta.decode(Bool.self, forKey: .is_end)
     }
+    
+    init(){
+        self.isEnd  = false
+        self.places = nil
+    }
+    
+    
+    mutating func appendData(newData:FindPlaces){
+        guard let places = newData.places else {
+            return
+        }
+        self.isEnd = newData.isEnd
+        self.places?.append(contentsOf: places)
+    }
 }
