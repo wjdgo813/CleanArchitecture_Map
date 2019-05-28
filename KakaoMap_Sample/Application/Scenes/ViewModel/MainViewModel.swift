@@ -29,12 +29,14 @@ extension MainViewModel: ViewModelType{
     struct Input {
         let findPlaceTrigger: Driver<CategoryCode>
         let refresh: Driver<Position>
-        let position: Driver<Position>
+        let currentLocation: Driver<Position>
+        let refreshShowTrigger: Driver<Position>
     }
     
     struct Output {
         let markers: Driver<[Position]>
         let placesViewModel: Driver<[PlaceItemViewModel]>
+        let refreshShow: Driver<Void>
     }
     
     
@@ -47,14 +49,10 @@ extension MainViewModel: ViewModelType{
             .disposed(by: self.disposeBag)
         
         input.findPlaceTrigger
-            .withLatestFrom(input.position){ ($0,$1) }
+            .withLatestFrom(input.currentLocation){ ($0,$1) }
             .debug("findPlaceTrigger")
             .flatMapLatest{ [weak self] (code, position) in
-                self?.useCase.findPlaceBy(categoryCode: code,
-                                          position: position,
-                                          radius: 300,
-                                          page: 1,
-                                          size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
+                self?.findPlace(code: code, position: position) ?? Driver.never()
         }.drive(places)
         .disposed(by: self.disposeBag)
         
@@ -62,13 +60,13 @@ extension MainViewModel: ViewModelType{
             .withLatestFrom(categoryCode.asDriverOnErrorJustComplete()){ ($0,$1) }
             .debug("refresh")
             .flatMapLatest{ [weak self] (position, code) in
-                self?.useCase.findPlaceBy(categoryCode: code,
-                                          position: position,
-                                          radius: 300,
-                                          page: 1,
-                                          size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
+                self?.findPlace(code: code, position: position) ?? Driver.never()
         }.drive(places)
         .disposed(by: self.disposeBag)
+        
+        let refreshShow = input.refreshShowTrigger
+            .withLatestFrom(input.findPlaceTrigger)
+            .mapToVoid()
         
         let markers = places.filter{ $0.places != nil }
             .map{
@@ -83,6 +81,21 @@ extension MainViewModel: ViewModelType{
         
         
         return Output(markers: markers.asDriverOnErrorJustComplete(),
-                      placesViewModel: viewModel.asDriverOnErrorJustComplete())
+                      placesViewModel: viewModel.asDriverOnErrorJustComplete(),
+                      refreshShow: refreshShow)
+    }
+    
+    private func findPlace(code: CategoryCode,
+                           position: Position,
+                           radius: Int = 300,
+                           page: Int = 1,
+                           size: Int = 15
+                           )-> Driver<FindPlaces>
+    {
+        return self.useCase.findPlaceBy(categoryCode: code,
+                                  position: position,
+                                  radius: 300,
+                                  page: 1,
+                                  size: 15).asDriverOnErrorJustComplete()
     }
 }

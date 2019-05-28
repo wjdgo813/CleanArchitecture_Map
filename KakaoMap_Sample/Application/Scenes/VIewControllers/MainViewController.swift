@@ -17,7 +17,8 @@ final class MainViewController: BaseViewController {
     
     private var viewModel: MainViewModel
     private let disposeBag = DisposeBag()
-    private let myLocation = PublishSubject<Position>()
+    private let currentLocation = PublishSubject<Position>()
+    private let gestureLocation = PublishSubject<Position>()
     
     // MARK: - UI Components
     
@@ -63,7 +64,8 @@ final class MainViewController: BaseViewController {
         self.findMapView.mapView.delegate = self
         let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
                                         refresh: findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
-                                        position: myLocation.asDriverOnErrorJustComplete())
+                                        currentLocation: currentLocation.asDriverOnErrorJustComplete(),
+                                        refreshShowTrigger: gestureLocation.asDriverOnErrorJustComplete())
         
         let output = viewModel.transform(input: input)
         output.markers.drive(onNext: {
@@ -74,6 +76,10 @@ final class MainViewController: BaseViewController {
             .drive(self.tableVIew.rx.items(cellIdentifier: "PlaceTableViewCell", cellType: PlaceTableViewCell.self)){ tableView, viewModel, cell in
             cell.bind(viewModel)
         }.disposed(by: self.disposeBag)
+        
+        output.refreshShow.drive(onNext:{ [weak self] in
+            self?.findMapView.refreshButton.isHidden = false
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -102,12 +108,15 @@ extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         let current = location.mapPointGeo()
         print("lat: \(current.latitude), long: \(current.longitude)")
-        myLocation.onNext(Position(x: "\(current.longitude)",
+        self.currentLocation.onNext(Position(x: "\(current.longitude)",
                                        y: "\(current.latitude)"))
     }
     
     func mapView(_ mapView: MTMapView!, dragStartedOn mapPoint: MTMapPoint!) {
-        
+        let map = mapPoint.mapPointGeo()
+        self.gestureLocation.onNext(Position(x: "\(map.latitude)",
+                                             y: "\(map.longitude)"))
+        print("drag: \(map.latitude), long: \(map.longitude)")
     }
     
     
@@ -115,11 +124,10 @@ extension MainViewController: MTMapViewDelegate{
         var poiitemArr = [MTMapPOIItem]()
         for position in positions{
             let item = MTMapPOIItem()
-            item.itemName = "ddd"
-            item.markerType = .redPin
+            item.markerType = .yellowPin
             item.showDisclosureButtonOnCalloutBalloon = true
             item.markerSelectedType = .redPin
-            item.showAnimationType = .noAnimation
+            item.showAnimationType = .springFromGround
             item.mapPoint = MTMapPoint(geoCoord: MTMapPointGeo(latitude: Double(position.y) ?? 0.0,
                                                                longitude: Double(position.x) ?? 0.0))
             
@@ -129,20 +137,4 @@ extension MainViewController: MTMapViewDelegate{
         self.findMapView.mapView.addPOIItems(poiitemArr)
         self.findMapView.mapView.fitAreaToShowAllPOIItems()
     }
-    
-    /*
-     _poiItem1 = [MTMapPOIItem poiItem];
-     _poiItem1.itemName = @"Default Marker";
-     _poiItem1.markerType = MTMapPOIItemMarkerTypeRedPin;
-     _poiItem1.showDisclosureButtonOnCalloutBalloon = YES;
-     
-     _poiItem1.markerSelectedType = MTMapPOIItemMarkerSelectedTypeRedPin;
-     
-     _poiItem1.showAnimationType = MTMapPOIItemShowAnimationTypeDropFromHeaven;
-     
-     _poiItem1.mapPoint = [MTMapPoint mapPointWithGeoCoord:MTMapPointGeoMake(37.402110, 127.108451)];
-     
-     [_mapView addPOIItem:_poiItem1];
-     [_mapView fitMapViewAreaToShowMapPoints:@[self.poiItem1.mapPoint]];
-     */
 }

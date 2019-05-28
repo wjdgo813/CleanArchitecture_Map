@@ -72,7 +72,6 @@
 		CCCE3E71229CDE3F000EE4DC /* FindPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E70229CDE3F000EE4DC /* FindPlaces.swift */; };
 		CCCE3E74229D15AD000EE4DC /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E73229D15AD000EE4DC /* PlaceTableViewCell.swift */; };
 		CCCE3E76229D1CE9000EE4DC /* PlaceItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */; };
-		CCCE3E78229D4105000EE4DC /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E77229D4105000EE4DC /* Double+.swift */; };
 		ED825AF100B568645C870D5C /* Pods_KakaoMap_SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A20527720AA9BC83BB858B /* Pods_KakaoMap_SampleUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -178,7 +177,6 @@
 		CCCE3E70229CDE3F000EE4DC /* FindPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaces.swift; sourceTree = "<group>"; };
 		CCCE3E73229D15AD000EE4DC /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceItemViewModel.swift; sourceTree = "<group>"; };
-		CCCE3E77229D4105000EE4DC /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		D149AFEFD4C305C7C589C7CD /* Pods-KakaoMap_SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBCCA0F9DF3EBB4CBD416351 /* Pods-KakaoMap_SampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6FE01596D26FDFC0B2AD79F /* Pods-KakaoMap_SampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleUITests/Pods-KakaoMap_SampleUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -444,7 +442,6 @@
 			children = (
 				A1BB8A8C229C47200034D6DB /* UIView+.swift */,
 				CCCE3E6E229CD2E5000EE4DC /* Rx+.swift */,
-				CCCE3E77229D4105000EE4DC /* Double+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -790,7 +787,6 @@
 				CCCE3E76229D1CE9000EE4DC /* PlaceItemViewModel.swift in Sources */,
 				CCCE3E6D229CC89D000EE4DC /* ViewModelType.swift in Sources */,
 				A12F40B1229A717B008B282C /* FindPlaceCase.swift in Sources */,
-				CCCE3E78229D4105000EE4DC /* Double+.swift in Sources */,
 				CCCE3E6B229CC887000EE4DC /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

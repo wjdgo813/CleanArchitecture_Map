@@ -21,6 +21,7 @@ final class MainMapView: BaseView{
                                 self.drugStoreButton.rx.tap.map{ _ in CategoryCode.drugStore },
                                 self.gasStationButton.rx.tap.map{ _ in CategoryCode.gasStation }).do(onNext: { _ in
                                     self.mapView.removeAllPOIItems()
+                                    self.refreshButton.isHidden = true
                                 })
     }()
     
@@ -31,6 +32,7 @@ final class MainMapView: BaseView{
                          y: "\(self.mapView.mapCenterPoint.mapPointGeo().latitude)") }
             .do(onNext: { _ in
                 self.mapView.removeAllPOIItems()
+                self.refreshButton.isHidden = true
             })
     }()
     
@@ -77,10 +79,11 @@ final class MainMapView: BaseView{
         return button
     }()
     
-    private let refreshButton: UIButton = {
+    let refreshButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("새로고침", for: .normal)
         button.backgroundColor = .white
+        button.isHidden = true
         return button
     }()
     
