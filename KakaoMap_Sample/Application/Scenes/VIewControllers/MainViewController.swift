@@ -24,7 +24,6 @@ final class MainViewController: BaseViewController {
     
     private let findMapView: MainMapView = {
         let view = MainMapView()
-        view.mapView.currentLocationTrackingMode = .onWithoutHeading
         return view
     }()
     
@@ -107,7 +106,6 @@ extension MainViewController{
 extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
         let current = location.mapPointGeo()
-        print("lat: \(current.latitude), long: \(current.longitude)")
         self.currentLocation.onNext(Position(x: "\(current.longitude)",
                                        y: "\(current.latitude)"))
     }
@@ -116,7 +114,12 @@ extension MainViewController: MTMapViewDelegate{
         let map = mapPoint.mapPointGeo()
         self.gestureLocation.onNext(Position(x: "\(map.latitude)",
                                              y: "\(map.longitude)"))
-        print("drag: \(map.latitude), long: \(map.longitude)")
+    }
+    
+    func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
+        mapView.setMapCenter(poiItem.mapPoint, animated: true)
+        
+        return false
     }
     
     

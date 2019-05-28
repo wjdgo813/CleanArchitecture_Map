@@ -40,12 +40,13 @@ final class MainMapView: BaseView{
     
     let mapView: MTMapView = {
         let mv = MTMapView(frame: CGRect.zero)
-        mv.baseMapType = .standard
         let markerItem = MTMapLocationMarkerItem()
         markerItem.radius = 10
         markerItem.fillColor = .red
         markerItem.strokeColor = .white
+        mv.baseMapType = .standard
         mv.updateCurrentLocationMarker(markerItem)
+        mv.currentLocationTrackingMode = .onWithoutHeading
         return mv
     }()
     
