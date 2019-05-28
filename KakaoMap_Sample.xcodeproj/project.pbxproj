@@ -456,8 +456,6 @@
 			isa = PBXGroup;
 			children = (
 				CCCA508B229BAB6E00AC0CCF /* Application */,
-				A12F40B2229A7360008B282C /* Platform */,
-				A12F40A9229A6ECB008B282C /* Domain */,
 				A12F40A4229A4EFA008B282C /* Support */,
 				A12F4021229A47D5008B282C /* AppDelegate.swift */,
 				A12F4028229A47D6008B282C /* Assets.xcassets */,
@@ -575,13 +573,6 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		A12F40A9229A6ECB008B282C /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
 		A12F40AA229A6ED2008B282C /* Entries */ = {
 			isa = PBXGroup;
 			children = (
@@ -600,13 +591,6 @@
 				A12F40B0229A717B008B282C /* FindPlaceCase.swift */,
 			);
 			path = UseCases;
-			sourceTree = "<group>";
-		};
-		A12F40B2229A7360008B282C /* Platform */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Platform;
 			sourceTree = "<group>";
 		};
 		A12F40B3229A7424008B282C /* Services */ = {
