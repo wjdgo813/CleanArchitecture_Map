@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "64D0C024546C1662E046620CD4B2ED8F"
+               BlueprintIdentifier = "DD5EE3795789AA96D2ABE47A61E7CFA3"
                BuildableName = "Pods_KakaoMap_Sample.framework"
                BlueprintName = "Pods-KakaoMap_Sample"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "64D0C024546C1662E046620CD4B2ED8F"
+            BlueprintIdentifier = "DD5EE3795789AA96D2ABE47A61E7CFA3"
             BuildableName = "Pods_KakaoMap_Sample.framework"
             BlueprintName = "Pods-KakaoMap_Sample"
             ReferencedContainer = "container:Pods.xcodeproj">

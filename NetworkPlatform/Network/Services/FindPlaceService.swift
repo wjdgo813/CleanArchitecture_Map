@@ -9,6 +9,7 @@
 import Foundation
 
 import Alamofire
+import Domain
 
 enum FindPlaceService: URLRequestConvertible{
     case findPlaceBy(categoryCode:CategoryCode, position: Position, radius:Int, page: Int , size: Int)

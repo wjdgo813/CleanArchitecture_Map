@@ -8,6 +8,8 @@
 
 import Foundation
 
+import Domain
+
 final class PlaceItemViewModel {
     let placeName: String
     let roadAddressName: String

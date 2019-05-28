@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Domain
 import SnapKit
 import RxSwift
 import RxCocoa

@@ -8,8 +8,14 @@
 
 import Foundation
 
-final class NetworkUseCaseProvider: UseCaseProvide{
-    func makeFindPlaceUseCase() -> FindPlaceCase{
+import Domain
+
+public final class NetworkUseCaseProvider: Domain.UseCaseProvide{
+    public init(){
+        
+    }
+    
+    public func makeFindPlaceUseCase() -> FindPlaceCase{
         return FindPlaceUseCase()
     }
 }

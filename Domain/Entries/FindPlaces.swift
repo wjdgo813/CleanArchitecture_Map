@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct FindPlaces: Codable {
-    var isEnd : Bool
-    var places: [Place]?
+public struct FindPlaces: Codable {
+    public var isEnd : Bool
+    public var places: [Place]?
     
     enum CodingKeys: String,CodingKey {
         case places = "documents"
@@ -21,7 +21,7 @@ struct FindPlaces: Codable {
         case is_end
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.places = try? values.decode([Place].self, forKey: .places)
         
@@ -29,17 +29,17 @@ struct FindPlaces: Codable {
         self.isEnd = try meta.decode(Bool.self, forKey: .is_end)
     }
     
-    init(){
+    public init(){
         self.isEnd  = false
         self.places = nil
     }
-    
-    
-    mutating func appendData(newData:FindPlaces){
-        guard let places = newData.places else {
-            return
-        }
-        self.isEnd = newData.isEnd
-        self.places?.append(contentsOf: places)
-    }
+//
+//    
+//    mutating func appendData(newData:FindPlaces){
+//        guard let places = newData.places else {
+//            return
+//        }
+//        self.isEnd = newData.isEnd
+//        self.places?.append(contentsOf: places)
+//    }
 }

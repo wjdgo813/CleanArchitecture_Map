@@ -8,6 +8,8 @@
 
 import Foundation
 
+import Domain
+
 protocol MainNavigator {
     func toMain()
 }

@@ -8,12 +8,15 @@
 
 import Foundation
 
+import Domain
+import NetworkPlatform
+
 final class Application{
     static let shared = Application()
-    private let networkUseCaseProvider: UseCaseProvide
+    private let networkUseCaseProvider: Domain.UseCaseProvide
     
     private init(){
-        self.networkUseCaseProvider = NetworkUseCaseProvider()
+        self.networkUseCaseProvider = NetworkPlatform.NetworkUseCaseProvider()
     }
     
     func configureMainInterface(in window:UIWindow){

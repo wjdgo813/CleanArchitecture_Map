@@ -1,5 +1,5 @@
 //
-//  Position.swift
+//  UseCaseProvide.swift
 //  KakaoMap_Sample
 //
 //  Created by Haehyeon Jeong on 26/05/2019.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct Position: Codable {
-    let x: String
-    let y: String
+public protocol UseCaseProvide{
+   func makeFindPlaceUseCase() -> FindPlaceCase
 }

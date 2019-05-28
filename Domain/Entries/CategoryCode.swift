@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CategoryCode: String, Codable{
+public enum CategoryCode: String, Codable{
     case gasStation = "OL7"
     case hospital   = "HP8"
     case drugStore  = "PM9"
