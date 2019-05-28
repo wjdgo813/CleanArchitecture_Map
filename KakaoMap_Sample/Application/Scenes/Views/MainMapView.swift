@@ -16,7 +16,7 @@ final class MainMapView: BaseView{
     
     // MARK: - Properties
     
-    lazy var categoryMakerClickObservable: Observable<CategoryCode> = {
+    lazy var categoryMarkerClickObservable: Observable<CategoryCode> = {
         return Observable.merge(self.hospitalButton.rx.tap.map{ _ in CategoryCode.hospital },
                                 self.drugStoreButton.rx.tap.map{ _ in CategoryCode.drugStore },
                                 self.gasStationButton.rx.tap.map{ _ in CategoryCode.gasStation })
@@ -31,11 +31,11 @@ final class MainMapView: BaseView{
     let mapView: MTMapView = {
         let mv = MTMapView(frame: CGRect.zero)
         mv.baseMapType = .standard
-        let makerItem = MTMapLocationMarkerItem()
-        makerItem.radius = 10
-        makerItem.fillColor = .red
-        makerItem.strokeColor = .white
-        mv.updateCurrentLocationMarker(makerItem)
+        let markerItem = MTMapLocationMarkerItem()
+        markerItem.radius = 10
+        markerItem.fillColor = .red
+        markerItem.strokeColor = .white
+        mv.updateCurrentLocationMarker(markerItem)
         return mv
     }()
     

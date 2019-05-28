@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Position {
+struct Position: Codable {
     let x: String
     let y: String
 }

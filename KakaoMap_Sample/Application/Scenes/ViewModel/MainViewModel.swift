@@ -20,12 +20,12 @@ final class MainViewModel: ViewModelType{
     }
     
     struct Output {
-        
+        let markers: Driver<[Place]>
     }
     
     private let useCase: FindPlaceCase
     private let navigator: MainNavigator
-    private let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()//테스트 용
     
     init(useCase: FindPlaceCase, navigator: MainNavigator) {
         self.useCase   = useCase
@@ -34,18 +34,24 @@ final class MainViewModel: ViewModelType{
     
     
     func transform(input: Input) -> Output {
-        let places = input.findPlaceTrigger.debug("findPlaceTrigger").withLatestFrom(input.position){ ($0,$1) }.flatMapLatest{
-            self.useCase.findPlaceBy(categoryCode: $0.0,
-                                     position: $0.1,
-                                     radius: 100,
-                                     page: 1,
-                                     size: 15).asDriverOnErrorJustComplete()
-            }
+        let places = input.findPlaceTrigger
+            .withLatestFrom(input.position){ ($0,$1) }
+            .flatMapLatest{ [weak self] (code, position) in
+                self?.useCase.findPlaceBy(categoryCode: code,
+                                         position: position,
+                                         radius: 100,
+                                         page: 1,
+                                         size: 15).asDriverOnErrorJustComplete() ?? Driver.never()
+            }.map{
+                return try? JSONDecoder().decode(FindPlaces.self, from: $0)
+        }
         
+        let markers = places.filter{ $0?.places != nil }.map{ $0!.places! }
+
         places.drive(onNext: { s in
             print("data : \(s)")
         }).disposed(by: self.disposeBag)
         
-        return Output()
+        return Output(markers: markers.asDriver())
     }
 }

@@ -48,7 +48,7 @@ final class MainViewController: BaseViewController {
     
     override func setupBind() {
         self.findMapView.mapView.delegate = self
-        let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMakerClickObservable.asDriverOnErrorJustComplete(),
+        let input = MainViewModel.Input(findPlaceTrigger: findMapView.categoryMarkerClickObservable.asDriverOnErrorJustComplete(),
                                         refresh: findMapView.refreshClickEvent.asDriverOnErrorJustComplete(),
                                         position: positionDriver.asDriverOnErrorJustComplete())
         
