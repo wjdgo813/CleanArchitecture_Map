@@ -32,6 +32,7 @@
 		A12D7855229D9E5500AC5C4F /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12D780B229D9A5200AC5C4F /* Domain.framework */; };
 		A12D7857229D9E6800AC5C4F /* Pods_Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12D7856229D9E6800AC5C4F /* Pods_Domain.framework */; };
 		A12D7859229D9E7700AC5C4F /* Pods_NetworkPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12D7858229D9E7700AC5C4F /* Pods_NetworkPlatform.framework */; };
+		A12D785E229DA8DE00AC5C4F /* CanShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D785D229DA8DE00AC5C4F /* CanShowAlert.swift */; };
 		A12F4022229A47D5008B282C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F4021229A47D5008B282C /* AppDelegate.swift */; };
 		A12F4024229A47D5008B282C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F4023229A47D5008B282C /* MainViewController.swift */; };
 		A12F4029229A47D6008B282C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A12F4028229A47D6008B282C /* Assets.xcassets */; };
@@ -191,6 +192,7 @@
 		A12D783F229D9A7400AC5C4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A12D7856229D9E6800AC5C4F /* Pods_Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12D7858229D9E7700AC5C4F /* Pods_NetworkPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NetworkPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A12D785D229DA8DE00AC5C4F /* CanShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanShowAlert.swift; sourceTree = "<group>"; };
 		A12F401E229A47D5008B282C /* KakaoMap_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoMap_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A12F4021229A47D5008B282C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A12F4023229A47D5008B282C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +412,14 @@
 				A12D783F229D9A7400AC5C4F /* Info.plist */,
 			);
 			path = NetworkPlatformTests;
+			sourceTree = "<group>";
+		};
+		A12D785C229DA8CA00AC5C4F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A12D785D229DA8DE00AC5C4F /* CanShowAlert.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		A12F4015229A47D5008B282C = {
@@ -659,6 +669,7 @@
 		CCCA5098229BEB1600AC0CCF /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A12D785C229DA8CA00AC5C4F /* Protocol */,
 				A1BB8A8B229C47160034D6DB /* Extension */,
 				CCCA509C229BF56B00AC0CCF /* Base */,
 			);
@@ -1408,6 +1419,7 @@
 				CCCA509E229BF58500AC0CCF /* BaseView.swift in Sources */,
 				CCCE3E76229D1CE9000EE4DC /* PlaceItemViewModel.swift in Sources */,
 				CCCE3E6D229CC89D000EE4DC /* ViewModelType.swift in Sources */,
+				A12D785E229DA8DE00AC5C4F /* CanShowAlert.swift in Sources */,
 				CCCE3E6B229CC887000EE4DC /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1500,7 +1512,11 @@
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.Domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1526,7 +1542,11 @@
 				INFOPLIST_FILE = Domain/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.Domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1545,7 +1565,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = DomainTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.DomainTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1562,7 +1586,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = DomainTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.DomainTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1586,7 +1614,11 @@
 				INFOPLIST_FILE = NetworkPlatform/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.NetworkPlatform;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1612,7 +1644,11 @@
 				INFOPLIST_FILE = NetworkPlatform/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.NetworkPlatform;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1631,7 +1667,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = NetworkPlatformTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.NetworkPlatformTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1648,7 +1688,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = NetworkPlatformTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = JHH.NetworkPlatformTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1789,7 +1833,10 @@
 				);
 				INFOPLIST_FILE = KakaoMap_Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-Sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KakaoMap_Sample/Support/KakaoMap_Sample-Bridging-Header.h";
@@ -1815,7 +1862,10 @@
 				);
 				INFOPLIST_FILE = KakaoMap_Sample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-Sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KakaoMap_Sample/Support/KakaoMap_Sample-Bridging-Header.h";
@@ -1833,7 +1883,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = KakaoMap_SampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-SampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1851,7 +1905,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = KakaoMap_SampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-SampleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1868,7 +1926,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = KakaoMap_SampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-SampleUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1885,7 +1947,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 594TR8CRP9;
 				INFOPLIST_FILE = KakaoMap_SampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "JHH.KakaoMap-SampleUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

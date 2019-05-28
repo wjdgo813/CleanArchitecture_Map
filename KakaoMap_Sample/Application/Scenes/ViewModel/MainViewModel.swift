@@ -36,10 +36,11 @@ extension MainViewModel: ViewModelType{
     }
     
     struct Output {
-        let markers: Driver<[Position]>
-        let placesViewModel: Driver<[PlaceItemViewModel]>
-        let refreshShow: Driver<Void>
+        let markers         : Driver<[Position]>
+        let placesViewModel : Driver<[PlaceItemViewModel]>
+        let refreshShow     : Driver<Void>
         let moreButtonHidden: Driver<Bool>
+        let isEmptyPlaces   : Driver<Void>
     }
     
     
@@ -117,10 +118,16 @@ extension MainViewModel: ViewModelType{
             return $0.isEnd ? true : false
         }
         
+        let isEmptyPlaces = places
+            .filter{ $0.places != nil }
+            .filter{ $0.places?.count ?? 0 == 0 }
+            .mapToVoid()
+        
         return Output(markers: markers.asDriverOnErrorJustComplete(),
                       placesViewModel: viewModel.asDriverOnErrorJustComplete(),
                       refreshShow: refreshShow,
-                      moreButtonHidden: moreButtonIsHidden.asDriverOnErrorJustComplete())
+                      moreButtonHidden: moreButtonIsHidden.asDriverOnErrorJustComplete(),
+                      isEmptyPlaces: isEmptyPlaces.asDriverOnErrorJustComplete())
     }
     
     private func findPlace(code: CategoryCode,
@@ -132,7 +139,7 @@ extension MainViewModel: ViewModelType{
     {
         return self.useCase.findPlaceBy(categoryCode: code,
                                   position: position,
-                                  radius: 2000,
+                                  radius: 200,
                                   page: page,
                                   size: 15).asDriverOnErrorJustComplete()
     }

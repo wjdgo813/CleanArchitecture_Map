@@ -8,6 +8,7 @@
 
 import UIKit
 
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,6 +21,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Application.shared.configureMainInterface(in: window)
 
         return true
+    }
+    
+    private func searchFrontViewController(_ viewController : UIViewController)->UIViewController{
+        var vc = viewController
+        if let presentVC = viewController.presentedViewController {
+            vc = self.searchFrontViewController(presentVC)
+        }
+        return vc
+    }
+    
+    func searchFrontViewController()->UIViewController{
+        var vc = appDelegate?.window?.rootViewController
+        vc = self.searchFrontViewController(vc!)
+        return vc!
     }
 }
 

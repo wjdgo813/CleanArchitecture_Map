@@ -33,13 +33,4 @@ public struct FindPlaces: Codable {
         self.isEnd  = false
         self.places = nil
     }
-//
-//    
-//    mutating func appendData(newData:FindPlaces){
-//        guard let places = newData.places else {
-//            return
-//        }
-//        self.isEnd = newData.isEnd
-//        self.places?.append(contentsOf: places)
-//    }
 }

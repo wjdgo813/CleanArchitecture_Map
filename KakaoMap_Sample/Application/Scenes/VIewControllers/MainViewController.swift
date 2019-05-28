@@ -13,7 +13,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class MainViewController: BaseViewController {
+final class MainViewController: BaseViewController, CanShowAlert {
     // MARK: Properties
     
     private var viewModel: MainViewModel
@@ -86,8 +86,9 @@ final class MainViewController: BaseViewController {
                                         loadMoreTrigger: self.moreLoadButton.rx.tap.asDriver())
         
         let output = viewModel.transform(input: input)
-        output.markers.drive(onNext: {
-            self.drawMarker(positions: $0)
+        output.markers.drive(onNext: { [weak self] positions in
+            self?.showList()
+            self?.drawMarker(positions: positions)
         }).disposed(by: self.disposeBag)
         
         output.placesViewModel
@@ -103,6 +104,11 @@ final class MainViewController: BaseViewController {
             .drive(onNext: {
             self.moreLoadButton.isHidden = $0
         }).disposed(by: self.disposeBag)
+        
+        output.isEmptyPlaces.drive(onNext:{ [weak self] in
+            self?.showAlert(title:"알림",message:"주변에 찾으시는 장소가 없습니다.")
+            self?.hideList()
+        }).disposed(by:self.disposeBag)
     }
 }
 
@@ -114,7 +120,7 @@ extension MainViewController{
             $0.top.equalToSuperview()
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
-            $0.height.equalTo(self.view.snp.height).multipliedBy(0.5)
+            $0.height.equalTo(self.view.snp.height)
         }
         
         self.tableVIew.snp.makeConstraints{
@@ -126,6 +132,37 @@ extension MainViewController{
     }
 }
 
+// MARK: UITableViewDelegate
+
+extension MainViewController{
+    private func showList(){
+        UIView.animate(withDuration: 0.5) {
+            self.findMapView.snp.remakeConstraints{
+                $0.top.equalToSuperview()
+                $0.left.equalToSuperview()
+                $0.right.equalToSuperview()
+                $0.height.equalTo(self.view.snp.height).multipliedBy(0.5)
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func hideList(){
+        UIView.animate(withDuration: 0.5) {
+            self.findMapView.snp.remakeConstraints{
+                $0.top.equalToSuperview()
+                $0.left.equalToSuperview()
+                $0.right.equalToSuperview()
+                $0.height.equalTo(self.view.snp.height)
+            }
+            
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: MTMapViewDelegate
 
 extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
@@ -166,6 +203,7 @@ extension MainViewController: MTMapViewDelegate{
     }
 }
 
+// MARK: UITableViewDelegate
 
 extension MainViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
