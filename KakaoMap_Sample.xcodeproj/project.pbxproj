@@ -664,7 +664,6 @@
 			isa = PBXGroup;
 			children = (
 				CCCA509F229BF72A00AC0CCF /* MainMapView.swift */,
-				CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				CCCE3E6A229CC887000EE4DC /* MainViewModel.swift */,
+				CCCE3E75229D1CE9000EE4DC /* PlaceItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
