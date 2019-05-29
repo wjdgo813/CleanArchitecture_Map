@@ -179,7 +179,7 @@ extension MainViewController{
     }
 }
 
-// MARK: MTMapViewDelegate
+// MARK: UIView Animation
 
 extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
