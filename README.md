@@ -30,9 +30,12 @@ public struct Place: Codable {
 
 ###### UseCases
 
-앱에서 어떤 것들을 할 지 정의한다.
+앱에서 어떤 것들을 할 지 정의한다. Platform에서 구현할 UseCaseProvider과 FindPlaceUseCase 프로토콜을 작성한다.
 
 ~~~swift
+public protocol UseCaseProvider{
+   func makeFindPlaceUseCase() -> FindPlaceUseCase
+}
 public protocol FindPlaceUseCase {
     func findPlaceBy(categoryCode:CategoryCode,
                      position: Position,
