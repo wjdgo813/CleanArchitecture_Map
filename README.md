@@ -13,7 +13,7 @@ Domian은 앱에서 어떤 기능을 갖고 어떤 일들을 할 지 정의하�
 앱에서 사용 될 데이터들을 정의한다.
 
 ~~~swift
-ublic struct Place: Codable {
+public struct Place: Codable {
     public var placeName   : String //장소명, 업체명
     public var distance    : String  //중심좌표까지의 거리
     public var categoryName: String //카테고리 이름
