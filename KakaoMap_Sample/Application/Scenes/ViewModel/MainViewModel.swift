@@ -139,7 +139,7 @@ extension MainViewModel: ViewModelType{
     
     private func findPlace(code: CategoryCode,
                            position: Position,
-                           radius: Int = 300,
+                           radius: Int = 500,
                            page: Int = 1,
                            size: Int = 15
                            )-> Driver<FindPlaces>

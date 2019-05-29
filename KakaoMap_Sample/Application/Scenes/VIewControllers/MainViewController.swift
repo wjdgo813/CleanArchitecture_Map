@@ -196,7 +196,6 @@ extension MainViewController: MTMapViewDelegate{
     
     func mapView(_ mapView: MTMapView!, selectedPOIItem poiItem: MTMapPOIItem!) -> Bool {
         mapView.setMapCenter(poiItem.mapPoint, animated: true)
-        
         return false
     }
     
