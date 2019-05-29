@@ -47,10 +47,11 @@ extension MainViewModel: ViewModelType{
     
     
     func transform(input: Input) -> Output {
-        var pageNumber       = 1
         let categoryCode     = BehaviorSubject<CategoryCode>(value: .hospital)
         let places           = BehaviorRelay<FindPlaces>(value: FindPlaces())
         let recentSearchInfo = PublishSubject<(Position,CategoryCode)>()
+        var pageNumber       = 1
+        
         let category         = input.categoryClickTrigger.withLatestFrom(input.currentLocation){ ($1,$0) }
         let refresh          = input.refreshTrigger.withLatestFrom(categoryCode.asDriverOnErrorJustComplete()){ ($0,$1) }
         let loadMore         = input.loadMoreTrigger.withLatestFrom(recentSearchInfo.asDriverOnErrorJustComplete()).do(onNext: { _ in  pageNumber += 1})
@@ -73,7 +74,7 @@ extension MainViewModel: ViewModelType{
             }.drive(places)
             .disposed(by: self.disposeBag)
         
-        loadMore.debug("loadMoreTrigger")
+        loadMore
             .flatMapLatest{ [weak self] (position, code) in
                 self?.findPlace(code: code, position: position, page:pageNumber) ?? Driver.never()
             }.map{
@@ -96,7 +97,6 @@ extension MainViewModel: ViewModelType{
         }
         
         let viewModel = places
-            .debug("viewModel")
             .filter{ $0.places != nil }
             .map{ $0.places!.map{  PlaceItemViewModel(with: $0)  } }
         

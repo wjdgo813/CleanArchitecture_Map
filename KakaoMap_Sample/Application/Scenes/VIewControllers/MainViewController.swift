@@ -109,7 +109,7 @@ final class MainViewController: BaseViewController, CanShowAlert {
             self?.findMapView.refreshButton.isHidden = false
         }).disposed(by: self.disposeBag)
         
-        output.moreButtonHidden.debug("moreButtonHidden")
+        output.moreButtonHidden
             .drive(onNext: {
                 self.moreLoadButton.isHidden = $0
             }).disposed(by: self.disposeBag)
