@@ -47,13 +47,14 @@ extension MainViewModel: ViewModelType{
     
     
     func transform(input: Input) -> Output {
+        var pageNumber       = 1
         let categoryCode     = BehaviorSubject<CategoryCode>(value: .hospital)
         let places           = BehaviorRelay<FindPlaces>(value: FindPlaces())
         let recentSearchInfo = PublishSubject<(Position,CategoryCode)>()
         let category         = input.categoryClickTrigger.withLatestFrom(input.currentLocation){ ($1,$0) }
         let refresh          = input.refreshTrigger.withLatestFrom(categoryCode.asDriverOnErrorJustComplete()){ ($0,$1) }
-        let loadMore         = input.loadMoreTrigger.withLatestFrom(recentSearchInfo.asDriverOnErrorJustComplete())
-        var pageNumber       = 1
+        let loadMore         = input.loadMoreTrigger.withLatestFrom(recentSearchInfo.asDriverOnErrorJustComplete()).do(onNext: { _ in  pageNumber += 1})
+        let fetch            = Driver.merge(category,refresh).do(onNext: { _ in pageNumber = 1})
         
         input.categoryClickTrigger
             .drive(categoryCode)
@@ -67,29 +68,12 @@ extension MainViewModel: ViewModelType{
             .drive(recentSearchInfo)
             .disposed(by: self.disposeBag)
         
-        category.debug("findPlaceTrigger")
-            .do(onNext: { _ in
-                pageNumber = 1
-            })
-            .flatMapLatest{ [weak self] (position, code) in
-                self?.findPlace(code: code, position: position) ?? Driver.never()
-            }
-            .drive(places)
-            .disposed(by: self.disposeBag)
-        
-        refresh.debug("refresh")
-            .do(onNext: { _ in
-                pageNumber = 1
-            })
-            .flatMapLatest{ [weak self] (position, code) in
-                self?.findPlace(code: code, position: position) ?? Driver.never()
+        fetch.flatMapLatest{ [weak self] (position, code) in
+            self?.findPlace(code: code, position: position) ?? Driver.never()
             }.drive(places)
             .disposed(by: self.disposeBag)
         
         loadMore.debug("loadMoreTrigger")
-            .do(onNext: { _ in
-                pageNumber += 1
-            })
             .flatMapLatest{ [weak self] (position, code) in
                 self?.findPlace(code: code, position: position, page:pageNumber) ?? Driver.never()
             }.map{
