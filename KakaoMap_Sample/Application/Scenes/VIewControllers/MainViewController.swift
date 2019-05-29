@@ -149,7 +149,7 @@ extension MainViewController{
     }
 }
 
-// MARK: UITableViewDelegate
+// MARK: UIView Animation
 
 extension MainViewController{
     private func showList(){
@@ -179,7 +179,7 @@ extension MainViewController{
     }
 }
 
-// MARK: UIView Animation
+// MARK: MTMapViewDelegate
 
 extension MainViewController: MTMapViewDelegate{
     func mapView(_ mapView: MTMapView!, updateCurrentLocation location: MTMapPoint!, withAccuracy accuracy: MTMapLocationAccuracy) {
