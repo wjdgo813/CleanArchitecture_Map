@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol UseCaseProvide{
-   func makeFindPlaceUseCase() -> FindPlaceCase
+public protocol UseCaseProvider{
+   func makeFindPlaceUseCase() -> FindPlaceUseCase
 }

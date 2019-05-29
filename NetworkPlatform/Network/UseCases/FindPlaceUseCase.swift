@@ -13,7 +13,7 @@ import Alamofire
 import RxSwift
 
 
-final class FindPlaceUseCase: FindPlaceCase{
+final class FindPlaceUseCase: Domain.FindPlaceUseCase{
     private let network: Network
     init(){
         self.network = Network()

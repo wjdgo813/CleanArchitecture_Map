@@ -14,11 +14,11 @@ import RxCocoa
 
 final class MainViewModel{
     
-    private let useCase: FindPlaceCase
+    private let useCase: FindPlaceUseCase
     private let navigator: MainNavigator
     let disposeBag = DisposeBag()
     
-    init(useCase: FindPlaceCase, navigator: MainNavigator) {
+    init(useCase: FindPlaceUseCase, navigator: MainNavigator) {
         self.useCase   = useCase
         self.navigator = navigator
     }

@@ -15,18 +15,17 @@ protocol MainNavigator {
 }
 
 final class DefaultMainNavigator: MainNavigator{
-    private let services: UseCaseProvide
+    private let services: UseCaseProvider
     private let navigationController: UINavigationController
     
-    init(services: UseCaseProvide,
+    init(services: UseCaseProvider,
          navigationController: UINavigationController){
         self.services = services
         self.navigationController = navigationController
     }
     
     func toMain(){
-        let vc = MainViewController(viewModel: MainViewModel(useCase: self.services.makeFindPlaceUseCase(),
-                                                             navigator: self))
+        let vc = MainViewController(viewModel: MainViewModel(useCase: self.services.makeFindPlaceUseCase(), navigator: self))
         self.navigationController.setViewControllers([vc], animated: true)
     }
 }

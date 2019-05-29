@@ -19,12 +19,12 @@
 		A12D7840229D9A7400AC5C4F /* NetworkPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = A12D7830229D9A7400AC5C4F /* NetworkPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A12D7843229D9A7400AC5C4F /* NetworkPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A12D782E229D9A7400AC5C4F /* NetworkPlatform.framework */; };
 		A12D7844229D9A7400AC5C4F /* NetworkPlatform.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A12D782E229D9A7400AC5C4F /* NetworkPlatform.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A12D784B229D9D5C00AC5C4F /* NetworkUseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA508E229BCF7100AC0CCF /* NetworkUseCaseProvider.swift */; };
+		A12D784B229D9D5C00AC5C4F /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA508E229BCF7100AC0CCF /* UseCaseProvider.swift */; };
 		A12D784C229D9D7600AC5C4F /* FindPlaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40BB229A9722008B282C /* FindPlaceUseCase.swift */; };
 		A12D784D229D9D8F00AC5C4F /* FindPlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40B4229A74CC008B282C /* FindPlaceService.swift */; };
 		A12D784E229D9D9400AC5C4F /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40C2229AAC6A008B282C /* Network.swift */; };
-		A12D784F229D9E1A00AC5C4F /* UseCaseProvide.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40AE229A70CA008B282C /* UseCaseProvide.swift */; };
-		A12D7850229D9E1E00AC5C4F /* FindPlaceCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40B0229A717B008B282C /* FindPlaceCase.swift */; };
+		A12D784F229D9E1A00AC5C4F /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40AE229A70CA008B282C /* UseCaseProvider.swift */; };
+		A12D7850229D9E1E00AC5C4F /* FindPlaceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40B0229A717B008B282C /* FindPlaceUseCase.swift */; };
 		A12D7851229D9E2200AC5C4F /* FindPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE3E70229CDE3F000EE4DC /* FindPlaces.swift */; };
 		A12D7852229D9E2500AC5C4F /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40AB229A6EF7008B282C /* Place.swift */; };
 		A12D7853229D9E2900AC5C4F /* CategoryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12F40B6229A7BF5008B282C /* CategoryCode.swift */; };
@@ -251,8 +251,8 @@
 		A12F40A2229A4C55008B282C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A12F40A5229A4F35008B282C /* KakaoMap_Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KakaoMap_Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		A12F40AB229A6EF7008B282C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		A12F40AE229A70CA008B282C /* UseCaseProvide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvide.swift; sourceTree = "<group>"; };
-		A12F40B0229A717B008B282C /* FindPlaceCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaceCase.swift; sourceTree = "<group>"; };
+		A12F40AE229A70CA008B282C /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
+		A12F40B0229A717B008B282C /* FindPlaceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaceUseCase.swift; sourceTree = "<group>"; };
 		A12F40B4229A74CC008B282C /* FindPlaceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPlaceService.swift; sourceTree = "<group>"; };
 		A12F40B6229A7BF5008B282C /* CategoryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCode.swift; sourceTree = "<group>"; };
 		A12F40B8229A7C4B008B282C /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		BF180E228F28ECF1AAD83FC1 /* Pods-KakaoMap_SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakaoMap_SampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakaoMap_SampleTests/Pods-KakaoMap_SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C8A20527720AA9BC83BB858B /* Pods_KakaoMap_SampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakaoMap_SampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCA508C229BCC6600AC0CCF /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		CCCA508E229BCF7100AC0CCF /* NetworkUseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUseCaseProvider.swift; sourceTree = "<group>"; };
+		CCCA508E229BCF7100AC0CCF /* UseCaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		CCCA5096229BE0C700AC0CCF /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		CCCA5099229BEB2B00AC0CCF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		CCCA509D229BF58500AC0CCF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -587,8 +587,8 @@
 		A12F40AD229A70B1008B282C /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				A12F40AE229A70CA008B282C /* UseCaseProvide.swift */,
-				A12F40B0229A717B008B282C /* FindPlaceCase.swift */,
+				A12F40AE229A70CA008B282C /* UseCaseProvider.swift */,
+				A12F40B0229A717B008B282C /* FindPlaceUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -605,7 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				A12F40BB229A9722008B282C /* FindPlaceUseCase.swift */,
-				CCCA508E229BCF7100AC0CCF /* NetworkUseCaseProvider.swift */,
+				CCCA508E229BCF7100AC0CCF /* UseCaseProvider.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1167,11 +1167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A12D7850229D9E1E00AC5C4F /* FindPlaceCase.swift in Sources */,
+				A12D7850229D9E1E00AC5C4F /* FindPlaceUseCase.swift in Sources */,
 				A12D7853229D9E2900AC5C4F /* CategoryCode.swift in Sources */,
 				A12D7854229D9E2C00AC5C4F /* Position.swift in Sources */,
 				A12D7851229D9E2200AC5C4F /* FindPlaces.swift in Sources */,
-				A12D784F229D9E1A00AC5C4F /* UseCaseProvide.swift in Sources */,
+				A12D784F229D9E1A00AC5C4F /* UseCaseProvider.swift in Sources */,
 				A12D7852229D9E2500AC5C4F /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1191,7 +1191,7 @@
 				A12D784C229D9D7600AC5C4F /* FindPlaceUseCase.swift in Sources */,
 				A12D784D229D9D8F00AC5C4F /* FindPlaceService.swift in Sources */,
 				A12D784E229D9D9400AC5C4F /* Network.swift in Sources */,
-				A12D784B229D9D5C00AC5C4F /* NetworkUseCaseProvider.swift in Sources */,
+				A12D784B229D9D5C00AC5C4F /* UseCaseProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

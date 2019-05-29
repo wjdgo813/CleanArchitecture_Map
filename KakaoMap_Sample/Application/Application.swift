@@ -13,10 +13,10 @@ import NetworkPlatform
 
 final class Application{
     static let shared = Application()
-    private let networkUseCaseProvider: Domain.UseCaseProvide
+    private let networkUseCaseProvider: Domain.UseCaseProvider
     
     private init(){
-        self.networkUseCaseProvider = NetworkPlatform.NetworkUseCaseProvider()
+        self.networkUseCaseProvider = NetworkPlatform.UseCaseProvider()
     }
     
     func configureMainInterface(in window:UIWindow){

@@ -10,12 +10,10 @@ import Foundation
 
 import Domain
 
-public final class NetworkUseCaseProvider: Domain.UseCaseProvide{
-    public init(){
-        
-    }
+public final class UseCaseProvider: Domain.UseCaseProvider{
+    public init(){ }
     
-    public func makeFindPlaceUseCase() -> FindPlaceCase{
+    public func makeFindPlaceUseCase() -> Domain.FindPlaceUseCase{
         return FindPlaceUseCase()
     }
 }

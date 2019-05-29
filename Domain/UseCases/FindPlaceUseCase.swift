@@ -10,7 +10,7 @@ import Foundation
 
 import RxSwift
 
-public protocol FindPlaceCase {
+public protocol FindPlaceUseCase {
     func findPlaceBy(categoryCode:CategoryCode,
                      position: Position,
                      radius:Int,
